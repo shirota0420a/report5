@@ -3,7 +3,6 @@
 # 入力数の確認
 isArgsOK(){
   if [ ! $1 == 2 ]; then
-    echo "Two arguments are required"
     return 1
   else
     return 0
@@ -16,27 +15,30 @@ isNaturalNumber(){
     if [ ! "$1" == "0" ] ; then
       return 0
     else
-      echo "'${1}' is not a Natural number"
       return 1
     fi
   else
-    echo "'${1}' is not a Natural number"
     return 1
   fi
 }
+Info(){ echo "[INF]$1"; }
+Error(){ echo "[ERR]$1"; }
 
 u=$1
 v=$2
 if ! isArgsOK "${#}"; then
-  echo "ERROR EXIT"
+  Error "Inputs 2 arguments"
   exit 1
 fi
 
 if ! isNaturalNumber "${u}" || ! isNaturalNumber "${v}"; then
-  echo "ERROR EXIT"
+  Error "Inputs natural number"
   exit 1
 fi
 
+Info "Inputs OK"
+
+# 最大公約数の計算（ユークリッドの互除法）
 while [ $v -gt 0 ]
 do
   r=`expr $u % $v`
@@ -44,3 +46,5 @@ do
   v=$r
 done
 echo $u
+
+Info "Calc OK"
