@@ -27,16 +27,16 @@ Error(){ echo "[ERR]$1"; }
 u=$1
 v=$2
 if ! isArgsOK "${#}"; then
-  Error "Inputs 2 arguments"
+  Error "Input 2 arguments"
   exit 1
 fi
 
 if ! isNaturalNumber "${u}" || ! isNaturalNumber "${v}"; then
-  Error "Inputs natural number"
+  Error "Input natural number"
   exit 1
 fi
 
-Info "Inputs OK"
+#Info "Inputs OK"
 
 # 最大公約数の計算（ユークリッドの互除法）
 while [ $v -gt 0 ]
@@ -47,4 +47,4 @@ do
 done
 echo $u
 
-Info "Calc OK"
+#Info "Calc OK"
